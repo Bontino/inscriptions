@@ -1,9 +1,6 @@
 package LigneDeCommande;
-import utilitaires.Menu;
-import utilitaires.Option;
-import utilitaires.Action;
-import utilitaires.ActionListe;
-import utilitaires.Liste;
+import commandLine.*;
+import commandLine.util.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ public class DialogueUtilisateur {
 
 protected static final Inscriptions inscription = Inscriptions.getInscriptions();
 
-	public static List<Personne> GetPersonne()
+	public static List<Personne> getPersonne()
 	{
 		SortedSet<inscriptions.Candidat> candidats = inscription.getCandidats();
 		List<Personne> personnes = new ArrayList<>();
@@ -24,7 +21,7 @@ protected static final Inscriptions inscription = Inscriptions.getInscriptions()
 				personnes.add((Personne) candidat);
 		return personnes;
 	}
-	public static List<Equipe> GetEquipe()
+	public static List<Equipe> getEquipe()
 	{
 			SortedSet<inscriptions.Candidat> candidats = inscription.getCandidats();
 			List<Equipe> team = new ArrayList<>();
@@ -34,7 +31,7 @@ protected static final Inscriptions inscription = Inscriptions.getInscriptions()
 			return team;
 	}
 	
-	public static List<Competition> GetCompetition()
+	public static List<Competition> getCompetition()
 	{
 			SortedSet<inscriptions.Competition> compet = inscription.getCompetitions();
 			List<Competition> listCompet = new ArrayList<>();
@@ -80,9 +77,9 @@ protected static final Inscriptions inscription = Inscriptions.getInscriptions()
 			public void optionSelectionnee()
 			{
 				
-				String nom = utilitaires.EntreesSorties.getString("Saisissez le nom : ");
-				String prenom = utilitaires.EntreesSorties.getString("Saisissez le prenom : ");
-			    String mail = utilitaires.EntreesSorties.getString("Saisissez le mail : ");
+				String nom = EntreesSorties.getString("Saisissez le nom : ");
+				String prenom = EntreesSorties.getString("Saisissez le prenom : ");
+			    String mail = EntreesSorties.getString("Saisissez le mail : ");
 				Personne pers = Inscriptions.getInscriptions().createPersonne(nom, prenom, mail);
 				System.out.println("Recapitulatif : votre nom est : " + nom + ", Votre prenom : " + prenom + ", Votre mail : " + mail );
 				SortedSet<Candidat> candidats = inscriptions.getCandidats();
@@ -106,7 +103,7 @@ protected static final Inscriptions inscription = Inscriptions.getInscriptions()
 		
 					public List<Personne> getListe()
 					{
-						return GetPersonne();
+						return getPersonne();
 						
 					}
 					
@@ -148,13 +145,13 @@ protected static final Inscriptions inscription = Inscriptions.getInscriptions()
 		
 					public List<Personne> getListe()
 					{
-						return GetPersonne();
+						return getPersonne();
 					}
 					
 		
 		@Override
 		public void elementSelectionne(int indice, Personne element) {
-			String mail = utilitaires.EntreesSorties.getString("Saisissez le nouveau mail : ");
+			String mail = EntreesSorties.getString("Saisissez le nouveau mail : ");
 			element.setMail(mail);
 			System.out.println("Recapitulatif : le nouveau mail est : " + mail );
 		}
@@ -170,13 +167,27 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 					
 					public List<Personne> getListe()
 						{
-						return GetPersonne();
+						return getPersonne();
 						}
 								
 					
 		@Override
 		public void elementSelectionne(int indice, Personne element) {
-		String nom = utilitaires.EntreesSorties.getString("Saisissez le nouveau Nom : ");
+		String nom = 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				EntreesSorties.getString("Saisissez le nouveau Nom : ");
 		element.setNom(nom);
 		System.out.println("Recapitulatif : le nouveau nom est : " + nom );
 					}
@@ -192,13 +203,13 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 													
 					public List<Personne> getListe()
 						{
-						return GetPersonne();
+						return getPersonne();
 						}
 																
 													
 		@Override
 		public void elementSelectionne(int indice, Personne element) {
-		String prenom = utilitaires.EntreesSorties.getString("Saisissez le nouveau prenom : ");
+		String prenom = EntreesSorties.getString("Saisissez le nouveau prenom : ");
 		element.setPrenom(prenom);
 		System.out.println("Recapitulatif : le nouveau prenom est : " + prenom );
 					}
@@ -215,7 +226,7 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 	
 		public void optionSelectionnee()
 		{
-			String nom = utilitaires.EntreesSorties.getString("Saisissez le nom de votre equipe : ");
+			String nom = EntreesSorties.getString("Saisissez le nom de votre equipe : ");
 			Equipe equip = inscriptions.createEquipe(nom);
 			System.out.println("Recapitulatif : votre nom d'equipe est : " + nom );
 			SortedSet<Candidat> candidats = inscriptions.getCandidats();
@@ -235,7 +246,7 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 	{
 					public List<Equipe> getListe()
 					{
-						return GetEquipe();
+						return getEquipe();
 					}
 		
 		@Override
@@ -277,9 +288,9 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 		{
 			boolean boolenEquipe = false;
 			String Status = "Vous etes inscrit en solo";
-			String nom = utilitaires.EntreesSorties.getString("Saisissez le nom de la competition : ");
-			String dateCloture = utilitaires.EntreesSorties.getString("Saisissez la date de cloture des inscriptions (YYYY-MM-DD) : ");
-			String enEquipe = utilitaires.EntreesSorties.getString("Saisissez si la compet est en equipe (Y/N) : ");
+			String nom = EntreesSorties.getString("Saisissez le nom de la competition : ");
+			String dateCloture = EntreesSorties.getString("Saisissez la date de cloture des inscriptions (YYYY-MM-DD) : ");
+			String enEquipe = EntreesSorties.getString("Saisissez si la compet est en equipe (Y/N) : ");
 			LocalDate Cloture = LocalDate.parse(dateCloture);
 			if(enEquipe == "Y")
 			//ajouter le lien avec la variable getinitbdd dans inscription
@@ -327,7 +338,7 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 		
 					public List<Competition> getListe()
 					{
-						return GetCompetition();
+						return getCompetition();
 					}
 
 		@Override
@@ -345,13 +356,13 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 						{
 				public List<Competition> getListe()
 				{
-				return GetCompetition();
+				return getCompetition();
 				}
 														
 											
 				@Override
 				public void elementSelectionne(int indice, Competition element) {
-				String dateCloture = utilitaires.EntreesSorties.getString("Saisissez la nouvelle date(Format : yyyy-mm-dd : )");
+				String dateCloture = EntreesSorties.getString("Saisissez la nouvelle date(Format : yyyy-mm-dd : )");
 				LocalDate Cloture = LocalDate.parse(dateCloture);
 				System.out.println("Recapitulatif : la nouvelle date pour la competition est : " + Cloture );
 						}
@@ -364,12 +375,12 @@ Liste<Personne> ModifierNomPerson = new Liste<Personne>("Modifier le nom","5",
 			{
 							public List<Equipe> getListe()
 							{
-								return GetEquipe();
+								return getEquipe();
 							}
 				
 				@Override
 				public void elementSelectionne(int indice, Equipe element) {
-					GetPersonne();
+					getPersonne();
 					element.add(null);
 					
 				}
